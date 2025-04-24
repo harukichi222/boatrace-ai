@@ -75,4 +75,7 @@ def home():
 def predict():
     return render_template("index.html")
 
+@app.route("/predict", methods=["GET"])
+def predict():
+    return render_template("index.html", logged_in=True)
 
