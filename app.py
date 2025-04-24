@@ -65,3 +65,6 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+@app.route("/", methods=["GET"])
+def index():
+    return redirect(url_for('predict'))
