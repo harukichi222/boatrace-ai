@@ -14,7 +14,7 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 df = pd.read_csv("競艇AI予算サンプルデータ.csv")
 df['1着か'] = (df['着順'] == 1).astype(int)
-features = ['枠番', '勝率', 'ST平均', '展示タイム', '風速']
+features = ['枠番', '勝率', 'ST平均', '展示タイム','着順','風速']
 X = df[features]
 y = df['1着か']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
