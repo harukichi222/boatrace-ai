@@ -69,3 +69,10 @@ if __name__ == "__main__":
 @app.route("/", methods=["GET"])
 def home():
     return redirect(url_for('predict'))
+
+
+@app.route("/predict", methods=["GET"])
+def predict():
+    return render_template("index.html")
+
+
