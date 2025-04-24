@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI競艇予測サイト</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 900px; margin: auto; }
+    input, select { width: 100%; padding: 8px; margin: 5px 0; }
+    .result { background: #f0f0f0; padding: 10px; border-radius: 8px; overflow-x: auto; }
+    .login { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>AI競艇予測（3連単・荒れ度・回収率）</h1>
+  {% if not logged_in %}
+    <form method="POST" action="/login">
+      <label>会員パスワード：</label><br>
+      <input type="password" name="password" required><br>
+      <input type="submit" value="ログイン">
+    </form>
+  {% else %}
+    <form method="POST" enctype="multipart/form-data">
+      <label>出走表CSVをアップロード：</label><br>
+      <input type="file" name="file" accept=".csv" required><br><br>
+      <input type="submit" value="予測実行">
+    </form>
+    <form method="POST" action="/logout" class="login">
+      <input type="submit" value="ログアウト">
+    </form>
+  {% endif %}
+  {% if table %}
+    <div class="result">
+      <h2>予測結果</h2>
+      {{ table | safe }}
+    </div>
+  {% endif %}
+</body>
+</html>
